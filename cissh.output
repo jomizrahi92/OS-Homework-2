@@ -1,0 +1,66 @@
+cissh < testScript.txt
+==== # testScript
+==== #
+==== 
+==== # This should produce an error.
+==== #
+==== ls | sort -r > sortedFileList
+ERROR: cissh: parsing error, probably too many commands
+==== 
+==== # Another error.
+==== #
+==== ls | sort -r | sort 
+ERROR: cissh: parsing error, probably too many commands
+==== 
+==== # And yet another.
+==== #
+==== ls > fileList what is this
+ERROR: cissh: too many tokens after a redirect
+==== 
+==== # One more
+==== #
+==== sort -r < fileList > somethingElse
+ERROR: cissh: parsing error, probably too many commands
+==== 
+==== # The following is an empty line
+==== #
+==== 
+==== # The following has only the ';'
+==== #
+==== 	;     
+==== 
+==== # Some single command lines
+==== #
+====    ls -C
+Distribution		cissh.output		cisshRedirectedOutput.o
+Makefile		cissh.ps		cisshSingleCommand.c
+Solution		cissh.ps~		cisshSingleCommand.o
+TAGS			cisshPipe.c		fileList
+cissh			cisshPipe.o		solution.output
+cissh.c			cisshRedirectedInput.c	testScript.txt
+cissh.c.~1~		cisshRedirectedInput.o	testScript.txt.~1~
+cissh.o			cisshRedirectedOutput.c
+====            ls -C ;
+Distribution		cissh.output		cisshRedirectedOutput.o
+Makefile		cissh.ps		cisshSingleCommand.c
+Solution		cissh.ps~		cisshSingleCommand.o
+TAGS			cisshPipe.c		fileList
+cissh			cisshPipe.o		solution.output
+cissh.c			cisshRedirectedInput.c	testScript.txt
+cissh.c.~1~		cisshRedirectedInput.o	testScript.txt.~1~
+cissh.o			cisshRedirectedOutput.c
+==== 
+==== # Redirected output
+==== #
+==== ls >		fileList
+====    ls		> fileList ;
+==== 
+==== # Redirected input
+==== #
+==== sort -r < fileList
+ERROR: cissh: cisshRedirectedInput() is not yet implemented
+==== 
+==== # Piped commands
+==== #
+==== ls | sort -r
+ERROR: cissh: cisshPipe() is not yet implemented

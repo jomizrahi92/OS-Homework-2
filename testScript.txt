@@ -1,0 +1,57 @@
+# testScript
+#
+
+# This should produce an error.
+#
+ls | sort -r > sortedFileList
+
+# Another error.
+#
+ls | sort -r | sort 
+
+# And yet another.
+#
+ls > fileList what is this
+
+# One more
+#
+sort -r < fileList > somethingElse
+
+# The following is an empty line
+#
+
+# The following has only the ';'
+#
+	;     
+
+# Some single command lines
+#
+   ls -C
+           ls -C ;
+
+# Redirected output
+#
+ls >		fileList
+   ls		> fileList ;
+
+# Redirected input
+#
+sort -r < fileList
+
+sort < fileList
+
+# Clean up
+#
+rm -f fileList
+
+# Piped commands
+#
+# Sort into reverse order
+ls | sort -r
+# Sort into normal order
+    ls   |    sort
+# Some empty lines.
+
+
+#
+
