@@ -1,0 +1,114 @@
+cissh < testScript.txt
+==== # testScript
+==== #
+==== 
+==== # This should produce an error.
+==== #
+==== ls | sort -r > sortedFileList
+ERROR: cissh: parsing error, probably too many commands
+==== 
+==== # Another error.
+==== #
+==== ls | sort -r | sort 
+ERROR: cissh: parsing error, probably too many commands
+==== 
+==== # And yet another.
+==== #
+==== ls > fileList what is this
+ERROR: cissh: too many tokens after a redirect
+==== 
+==== # One more
+==== #
+==== sort -r < fileList > somethingElse
+ERROR: cissh: parsing error, probably too many commands
+==== 
+==== # The following is an empty line
+==== #
+==== 
+==== # The following has only the ';'
+==== #
+==== 	;     
+==== 
+==== # Some single command lines
+==== #
+====    ls -C
+Makefile		cisshPipe.o		cisshSingleCommand.o
+cissh			cisshRedirectedInput.c	fileList
+cissh.c			cisshRedirectedInput.o	solution.output
+cissh.o			cisshRedirectedOutput.c	testScript.txt
+cissh.output		cisshRedirectedOutput.o
+cisshPipe.c		cisshSingleCommand.c
+====            ls -C ;
+Makefile		cisshPipe.o		cisshSingleCommand.o
+cissh			cisshRedirectedInput.c	fileList
+cissh.c			cisshRedirectedInput.o	solution.output
+cissh.o			cisshRedirectedOutput.c	testScript.txt
+cissh.output		cisshRedirectedOutput.o
+cisshPipe.c		cisshSingleCommand.c
+==== 
+==== # Redirected output
+==== #
+==== ls >		fileList
+====    ls		> fileList ;
+==== 
+==== # Redirected input
+==== #
+==== sort -r < fileList
+testScript.txt
+solution.output
+fileList
+cisshSingleCommand.o
+cisshSingleCommand.c
+cisshRedirectedOutput.o
+cisshRedirectedOutput.c
+cisshRedirectedInput.o
+cisshRedirectedInput.c
+cisshPipe.o
+cisshPipe.c
+cissh.output
+cissh.o
+cissh.c
+cissh
+Makefile
+==== 
+==== sort < fileList
+Makefile
+cissh
+cissh.c
+cissh.o
+cissh.output
+cisshPipe.c
+cisshPipe.o
+cisshRedirectedInput.c
+cisshRedirectedInput.o
+cisshRedirectedOutput.c
+cisshRedirectedOutput.o
+cisshSingleCommand.c
+cisshSingleCommand.o
+fileList
+solution.output
+testScript.txt
+==== 
+==== # Clean up
+==== #
+==== rm -f fileList
+==== 
+==== # Piped commands
+==== #
+==== # Sort into reverse order
+==== ls | sort -r
+testScript.txt
+solution.output
+cisshSingleCommand.o
+cisshSingleCommand.c
+cisshRedirectedOutput.o
+cisshRedirectedOutput.c
+cisshRedirectedInput.o
+cisshRedirectedInput.c
+cisshPipe.o
+cisshPipe.c
+cissh.output
+cissh.o
+cissh.c
+cissh
+Makefile
